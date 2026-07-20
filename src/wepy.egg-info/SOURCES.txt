@@ -19,4 +19,5 @@ src/wepy/technique.py
 src/wepy.egg-info/PKG-INFO
 src/wepy.egg-info/SOURCES.txt
 src/wepy.egg-info/dependency_links.txt
+src/wepy.egg-info/requires.txt
 src/wepy.egg-info/top_level.txt

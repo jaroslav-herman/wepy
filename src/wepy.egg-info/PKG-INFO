@@ -4,3 +4,4 @@ Version: 0.1.0
 Summary: Add your description here
 Requires-Python: >=3.14
 Description-Content-Type: text/markdown
+Requires-Dist: numpy>=2.5.1
