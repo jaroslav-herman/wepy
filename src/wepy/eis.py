@@ -7,6 +7,7 @@ from glob import glob
 from hybdrt.models import DRT
 import wepy.basics as we
 from impedance.models.circuits import CustomCircuit
+from bayes_drt2.inversion import Inverter
 
 # def load_MEA_params(MEA):
 #     for mea in MEA:
@@ -187,7 +188,8 @@ def freq_and_Z(df, val=1, freq_lims=[3, 2e4], control="Ewe"):
             ].values
         )
         E = np.mean(
-            df.loc[(df["cycle number"] == val) & (df["freq/Hz"] != 0), "Ewe-Ece/V"]
+            df.loc[(df["cycle number"] == val) & (df["freq/Hz"] != 0), "<Ewe-Ece>/V"]
+            # -df.loc[(df["cycle number"] == val) & (df["freq/Hz"] != 0), "<Ece>/V"]
         )
         I = np.mean(
             df.loc[(df["cycle number"] == val) & (df["freq/Hz"] != 0), "<I>/mA"]
@@ -439,6 +441,37 @@ def capacitance(R, Q, alpha, Re=None, Qe=None, alphae=None):
     else:
         return C
 
+def find_outliers(f,Z,threshold=1):
+    inv = Inverter()
+    outliers = inv.check_outliers(f,Z,threshold=threshold, use_existing_fit=False)
+    indices = np.ravel(outliers)
+    return indices
+
+def remove_outliers(f, Z, threshold=1):
+    """
+    Remove outliers from the impedance data based on the DRT inversion method.
+
+    Parameters
+    ----------
+    f : array_like
+        Frequency data (Hz).
+    Z : array_like
+        Complex impedance data.
+    threshold : float, optional
+        Threshold for outlier detection. Default is 1.
+
+    Returns
+    -------
+    f_clean : ndarray
+        Frequency data with outliers removed.
+    Z_clean : ndarray
+        Complex impedance data with outliers removed.
+    """
+    indices = find_outliers(f, Z, threshold=threshold)
+    f = np.delete(f, indices)
+    Z = np.delete(Z, indices)
+    return f, Z
+
 
 def tau(R, Q, alpha, Re=None, Qe=None, alphae=None):
     """
@@ -481,7 +514,7 @@ def tau(R, Q, alpha, Re=None, Qe=None, alphae=None):
 
 
 def fit_spectrum(
-    f, Z, cir="R0-L0-p(R1,CPE1)", init=None, bounds=None, E=0, I=0, tau_sort=False
+    f, Z, cir="R0-L0-p(R1,CPE1)", init=None, bounds=None, outliers=False, threshold=1, E=0, I=0, tau_sort=False
 ):
     """
     Fit an impedance spectrum to a specified circuit model using CustomCircuit.
@@ -573,6 +606,9 @@ def fit_spectrum(
     if bounds is None:
         bounds = ([0.005, 1e-10, 1e-5, 1e-6, 0.6], [1, 1, 1000, 1, 1])
     circuit = CustomCircuit(cir, initial_guess=init)
+
+    if outliers:
+        f, Z = remove_outliers(f, Z, threshold=threshold)
     circuit.fit(f, Z, bounds=bounds)
 
     params = np.asarray(circuit.parameters_)
