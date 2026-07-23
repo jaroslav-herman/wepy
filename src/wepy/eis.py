@@ -186,6 +186,12 @@ def freq_and_Z(df, val=1, freq_lims=[3, 2e4], control="Ewe"):
                 (df["cycle number"] == val) & (df["freq/Hz"] != 0), "-Im(Zwe-ce)/Ohm"
             ].values
         )
+        E = np.mean(
+            df.loc[(df["cycle number"] == val) & (df["freq/Hz"] != 0), "Ewe-Ece/V"]
+        )
+        I = np.mean(
+            df.loc[(df["cycle number"] == val) & (df["freq/Hz"] != 0), "<I>/mA"]
+        )
 
     if np.diff(freq).any() < 0:
         print("problem")

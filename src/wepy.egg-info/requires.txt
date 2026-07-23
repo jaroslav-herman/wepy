@@ -1,1 +1,8 @@
+galvani
+hybrid-drt
+impedance>=1.7.1
+matplotlib>=3.11.1
+mittag-leffler
+natsort>=8.4.0
 numpy>=2.5.1
+pandas>=3.0.3
