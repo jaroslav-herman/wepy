@@ -1,3 +1,4 @@
+bayes-drt2
 galvani
 hybrid-drt
 impedance>=1.7.1
