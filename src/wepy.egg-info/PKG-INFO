@@ -5,6 +5,7 @@ Summary: Add your description here
 Requires-Python: >=3.14
 Description-Content-Type: text/markdown
 Requires-Dist: bayes-drt2
+Requires-Dist: galvani
 Requires-Dist: hybrid-drt
 Requires-Dist: impedance>=1.7.1
 Requires-Dist: matplotlib>=3.11.1
