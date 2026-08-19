@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 from glob import glob
+from galvani import MPRfile
 
 # from hybdrt.models import DRT
 from scipy.interpolate import interp1d
@@ -242,6 +243,13 @@ def read_file(file, skiprows=None, delimiter="\t", encoding="latin1", **kwargs):
     pd.DataFrame
         Data read from the file.
     """
+    if os.fspath(file).lower().endswith(".mpr"):
+        # MPR files are binary Bio-Logic files and cannot be parsed with
+        # pandas.read_csv.  Galvani returns a NumPy record array, which is
+        # converted here so read_file has the same DataFrame return type for
+        # both MPR and text-based MPT files.
+        return pd.DataFrame(MPRfile(file).data)
+
     if skiprows is None:
         skiprows = get_header_lines(file) - 1
     with open(file, encoding=encoding) as f:

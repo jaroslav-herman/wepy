@@ -19,5 +19,5 @@ dependencies = [
 [tool.uv.sources]
 mittag-leffler = { git = "https://github.com/jdhuang-csm/mittag-leffler" }
 hybrid-drt = { git = "https://github.com/jdhuang-csm/hybrid-drt" }
-galvani = { git = "https://github.com/jaroslav-herman/galvani" }
 bayes-drt2 = { git = "https://github.com/jaroslav-herman/bayes-drt2" }
+galvani = { path = "../galvani", editable = true }

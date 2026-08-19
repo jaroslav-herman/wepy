@@ -159,10 +159,13 @@ wheels = [
 [[package]]
 name = "galvani"
 version = "0.5.0"
-source = { git = "https://github.com/jaroslav-herman/galvani#a5b219bb65ae3e29b55834886d41ed979c34ea10" }
+source = { editable = "../galvani" }
 dependencies = [
     { name = "numpy" },
 ]
+
+[package.metadata]
+requires-dist = [{ name = "numpy" }]
 
 [[package]]
 name = "hybrid-drt"
@@ -803,7 +806,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "bayes-drt2", git = "https://github.com/jaroslav-herman/bayes-drt2" },
-    { name = "galvani", git = "https://github.com/jaroslav-herman/galvani" },
+    { name = "galvani", editable = "../galvani" },
     { name = "hybrid-drt", git = "https://github.com/jdhuang-csm/hybrid-drt" },
     { name = "impedance", specifier = ">=1.7.1" },
     { name = "matplotlib", specifier = ">=3.11.1" },
