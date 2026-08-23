@@ -9,8 +9,8 @@ import wepy.basics as we
 from impedance.models.circuits import CustomCircuit
 from bayes_drt2.inversion import Inverter
 
-# def load_MEA_params(MEA):
-#     for mea in MEA:
+def load_MEA_params(MEA):
+    for mea in MEA:
 
 #         if mea['name'] == '028':
 #             mea['PEIS_files'] = glob(os.path.join('C:/Users/Herman/Desktop/MFF/Diplomka/Data z PEMWE/'+mea['name']+'*/PEIS','time*'+'.txt'))
@@ -51,62 +51,62 @@ from bayes_drt2.inversion import Inverter
 
 #         else:
 
-#             mea['PEIS_files'] = glob(os.path.join('C:/Users/Herman/Desktop/MFF/Diplomka/Data z PEMWE/'+mea['name']+'*/PEIS','time*'+'.txt'))
-#             mea['current_files'] = glob(os.path.join('C:/Users/Herman/Desktop/MFF/Diplomka/Data z PEMWE/'+mea['name']+'*/PEIS','current*'+'.txt'))
+        mea['PEIS_files'] = glob(os.path.join('C:/Users/Herman/Desktop/MFF/Diplomka/Data z PEMWE/'+mea['name']+'*/PEIS','time*'+'.txt'))
+        mea['current_files'] = glob(os.path.join('C:/Users/Herman/Desktop/MFF/Diplomka/Data z PEMWE/'+mea['name']+'*/PEIS','current*'+'.txt'))
 
-#             mea['cycles'] = len(mea['PEIS_files'])
-#             cycles = mea['cycles']
-#             print(cycles)
+        mea['cycles'] = len(mea['PEIS_files'])
+        cycles = mea['cycles']
+        print(cycles)
 
-#             mea['U'] = np.empty((cycles,15))
-#             mea['Ro'] = np.empty((cycles,15)) # Ohmic resistance
-#             mea['Roe'] = np.empty((cycles,15)) # Ohmic resistance error
-#             mea['Rind'] = np.empty((cycles,15)) #  resistance of inductance element
-#             mea['Rinde'] = np.empty((cycles,15)) # resistance of inductance element error
-#             mea['Ind'] = np.empty((cycles,15)) #  Inductance
-#             mea['Inde'] = np.empty((cycles,15)) # Inductance error
-#             mea['Rc'] = np.empty((cycles,15)) # Cathod resistance
-#             mea['Rce'] = np.empty((cycles,15)) # Cathod resistance error
-#             mea['Pc'] = np.empty((cycles,15)) # Cathod CPE
-#             mea['Pce'] = np.empty((cycles,15)) # Cathod CPE error
-#             mea['ac'] = np.empty((cycles,15)) # Cathod alpha parameter
-#             mea['ace'] = np.empty((cycles,15)) # Cathod alpha parameter error
-#             mea['Ra'] = np.empty((cycles,15)) # anode resistance
-#             mea['Rae'] = np.empty((cycles,15)) # anode resistance error
-#             mea['Pa'] = np.empty((cycles,15)) # Anode CPE
-#             mea['Pae'] = np.empty((cycles,15)) # Anode CPE error
-#             mea['aa'] = np.empty((cycles,15)) # Anode alpha parameter
-#             mea['aae'] = np.empty((cycles,15)) # Anode alpha parameter error
+        mea['U'] = np.empty((cycles,15))
+        mea['Ro'] = np.empty((cycles,15)) # Ohmic resistance
+        mea['Roe'] = np.empty((cycles,15)) # Ohmic resistance error
+        mea['Rind'] = np.empty((cycles,15)) #  resistance of inductance element
+        mea['Rinde'] = np.empty((cycles,15)) # resistance of inductance element error
+        mea['Ind'] = np.empty((cycles,15)) #  Inductance
+        mea['Inde'] = np.empty((cycles,15)) # Inductance error
+        mea['Rc'] = np.empty((cycles,15)) # Cathod resistance
+        mea['Rce'] = np.empty((cycles,15)) # Cathod resistance error
+        mea['Pc'] = np.empty((cycles,15)) # Cathod CPE
+        mea['Pce'] = np.empty((cycles,15)) # Cathod CPE error
+        mea['ac'] = np.empty((cycles,15)) # Cathod alpha parameter
+        mea['ace'] = np.empty((cycles,15)) # Cathod alpha parameter error
+        mea['Ra'] = np.empty((cycles,15)) # anode resistance
+        mea['Rae'] = np.empty((cycles,15)) # anode resistance error
+        mea['Pa'] = np.empty((cycles,15)) # Anode CPE
+        mea['Pae'] = np.empty((cycles,15)) # Anode CPE error
+        mea['aa'] = np.empty((cycles,15)) # Anode alpha parameter
+        mea['aae'] = np.empty((cycles,15)) # Anode alpha parameter error
 
-#             mea['Cc'] = np.empty((cycles,15)) # Cathod capacity
-#             mea['Ca'] = np.empty((cycles,15)) # Cathod capacity
-#             mea['I'] = np.empty((cycles,15)) # Current measured
+        mea['Cc'] = np.empty((cycles,15)) # Cathod capacity
+        mea['Ca'] = np.empty((cycles,15)) # Cathod capacity
+        mea['I'] = np.empty((cycles,15)) # Current measured
 
-#             for cycle, file in enumerate(mea['PEIS_files']):
-#                 d = np.loadtxt(file,skiprows=0)
-#                 mea['U'][cycle] = d[0,:]
-#                 mea['Ro'][cycle] = d[1,:]
-#                 mea['Roe'][cycle] = d[2,:]
-#                 mea['Rc'][cycle] = d[7,:]
-#                 mea['Rce'][cycle] = d[8,:]
-#                 mea['Pc'][cycle] = d[9,:]
-#                 mea['Pce'][cycle] = d[10,:]
-#                 mea['ac'][cycle] = d[11,:]
-#                 mea['ace'][cycle] = d[12,:]
-#                 mea['Ra'][cycle] = d[13,:]
-#                 mea['Rae'][cycle] = d[14,:]
-#                 mea['Pa'][cycle] = d[15,:]
-#                 mea['Pae'][cycle] = d[16,:]
-#                 mea['aa'][cycle] = d[17,:]
-#                 mea['aae'][cycle] = d[18,:]
+        for cycle, file in enumerate(mea['PEIS_files']):
+            d = np.loadtxt(file,skiprows=0)
+            mea['U'][cycle] = d[0,:]
+            mea['Ro'][cycle] = d[1,:]
+            mea['Roe'][cycle] = d[2,:]
+            mea['Rc'][cycle] = d[7,:]
+            mea['Rce'][cycle] = d[8,:]
+            mea['Pc'][cycle] = d[9,:]
+            mea['Pce'][cycle] = d[10,:]
+            mea['ac'][cycle] = d[11,:]
+            mea['ace'][cycle] = d[12,:]
+            mea['Ra'][cycle] = d[13,:]
+            mea['Rae'][cycle] = d[14,:]
+            mea['Pa'][cycle] = d[15,:]
+            mea['Pae'][cycle] = d[16,:]
+            mea['aa'][cycle] = d[17,:]
+            mea['aae'][cycle] = d[18,:]
 
-#                 mea['Ca'][cycle] = mea['Ra'][cycle]**((1-mea['aa'][cycle])/mea['aa'][cycle])*(mea['Pa'][cycle])**((1)/mea['aa'][cycle])
-#                 mea['Cc'][cycle] = mea['Rc'][cycle]**((1-mea['ac'][cycle])/mea['ac'][cycle])*(mea['Pc'][cycle])**((1)/mea['ac'][cycle])
+            mea['Ca'][cycle] = mea['Ra'][cycle]**((1-mea['aa'][cycle])/mea['aa'][cycle])*(mea['Pa'][cycle])**((1)/mea['aa'][cycle])
+            mea['Cc'][cycle] = mea['Rc'][cycle]**((1-mea['ac'][cycle])/mea['ac'][cycle])*(mea['Pc'][cycle])**((1)/mea['ac'][cycle])
 
 
-#         for cycle, file in enumerate(mea['current_files']):
-#             currents = np.loadtxt(file,skiprows=0)
-#             mea['I'][cycle] = currents
+        for cycle, file in enumerate(mea['current_files']):
+            currents = np.loadtxt(file,skiprows=0)
+            mea['I'][cycle] = currents
 
 
 def relaxis_fit_params(MEA, params):
@@ -188,8 +188,8 @@ def freq_and_Z(df, val=1, freq_lims=[3, 2e4], control="Ewe"):
             ].values
         )
         E = np.mean(
-            df.loc[(df["cycle number"] == val) & (df["freq/Hz"] != 0), "<Ewe-Ece>/V"]
-            # -df.loc[(df["cycle number"] == val) & (df["freq/Hz"] != 0), "<Ece>/V"]
+            df.loc[(df["cycle number"] == val) & (df["freq/Hz"] != 0), "<Ewe>/V"]
+            - df.loc[(df["cycle number"] == val) & (df["freq/Hz"] != 0), "<Ece>/V"]
         )
         I = np.mean(
             df.loc[(df["cycle number"] == val) & (df["freq/Hz"] != 0), "<I>/mA"]
@@ -346,26 +346,53 @@ def get_drt(f, Z, method="hybrid"):
     **Parameters**
     - f (array_like or sequence of array_like): Frequency data in Hz.
     - Z (array_like or sequence of array_like): Complex impedance spectrum/spectra.
-    - method (str, default 'hybrid'): DRT solver backend. Only 'hybrid' is supported.
+    - method (str, default 'hybrid'): DRT solver backend. Supported values are
+      'hybrid' and 'ridge'.
 
     **Returns**
     - Single spectrum: (tau, gamma) as arrays.
     - Multiple spectra: (tau_all, gamma_all) as lists of arrays.
 
     **Raises**
-    - ValueError: If method is not 'hybrid'.
+    - ValueError: If method is not recognized.
     """
-    if method != "hybrid":
-        raise ValueError("Invalid method. Supported method: 'hybrid'")
+    if method not in {"hybrid", "ridge"}:
+        raise ValueError(f"Unsupported DRT method: {method}")
 
-    drt = DRT()
+    drt = DRT() if method == "hybrid" else None
 
-    def _compute_single_drt(drt, f_single, z_single):
-        drt.fit_eis(f_single, z_single)
-        tau_single = drt.get_tau_eval(20)
-        gamma_single = drt.predict_drt(tau_single)
-        Ro = drt.predict_r_inf()
-        return tau_single, gamma_single, Ro
+    def _compute_single_drt(f_single, z_single):
+        if method == "hybrid":
+            drt.fit_eis(f_single, z_single)
+            tau_single = drt.get_tau_eval(20)
+            gamma_single = drt.predict_drt(tau_single)
+            Ro = drt.predict_r_inf()
+            return tau_single, gamma_single, Ro
+
+        # This follows EIS_fitting/eis_services.py::analyze_outliers. The
+        # outlier call performs the Ridge inversion and populates the same
+        # distribution/basis data used by the GUI's Ridge DRT display.
+        inverter = Inverter()
+        inverter.check_outliers(
+            np.asarray(f_single),
+            np.asarray(z_single),
+            threshold=1,
+            use_existing_fit=False,
+        )
+        distribution = next(iter(inverter.distributions))
+        basis_tau = inverter.distributions[distribution]["tau"]
+        minimum_log_tau = np.log10(np.min(basis_tau)) - 1
+        maximum_log_tau = np.log10(np.max(basis_tau)) + 1
+        tau_single = np.logspace(
+            minimum_log_tau,
+            maximum_log_tau,
+            int(10 * (maximum_log_tau - minimum_log_tau) + 1),
+        )
+        gamma_single = inverter.predict_distribution(
+            name=distribution,
+            tau=tau_single,
+        )
+        return tau_single, np.asarray(gamma_single), float(inverter.R_inf)
 
     # Detect multiple spectra:
     # - Z as list/tuple of spectra
@@ -377,7 +404,7 @@ def get_drt(f, Z, method="hybrid"):
         is_multi = Z.ndim > 1
 
     if not is_multi:
-        return _compute_single_drt(drt, f, Z)
+        return _compute_single_drt(f, Z)
 
     Z_list = list(Z)
 
@@ -395,12 +422,17 @@ def get_drt(f, Z, method="hybrid"):
     gamma_all = []
     Ro_all = []
     for f_i, Z_i in zip(f_list, Z_list):
-        tau_i, gamma_i, Ro = _compute_single_drt(drt, f_i, Z_i)
+        tau_i, gamma_i, Ro = _compute_single_drt(f_i, Z_i)
         tau_all.append(tau_i)
         gamma_all.append(gamma_i)
         Ro_all.append(Ro)
 
     return tau_all, gamma_all, Ro_all
+
+
+def get_DRT(f, Z, method="hybrid"):
+    """Compatibility entry point for :func:`get_drt`."""
+    return get_drt(f, Z, method=method)
 
 
 def capacitance(R, Q, alpha, Re=None, Qe=None, alphae=None):
@@ -441,11 +473,13 @@ def capacitance(R, Q, alpha, Re=None, Qe=None, alphae=None):
     else:
         return C
 
-def find_outliers(f,Z,threshold=1):
+
+def find_outliers(f, Z, threshold=1):
     inv = Inverter()
-    outliers = inv.check_outliers(f,Z,threshold=threshold, use_existing_fit=False)
+    outliers = inv.check_outliers(f, Z, threshold=threshold, use_existing_fit=False)
     indices = np.ravel(outliers)
     return indices
+
 
 def remove_outliers(f, Z, threshold=1):
     """
@@ -514,7 +548,16 @@ def tau(R, Q, alpha, Re=None, Qe=None, alphae=None):
 
 
 def fit_spectrum(
-    f, Z, cir="R0-L0-p(R1,CPE1)", init=None, bounds=None, outliers=False, threshold=1, E=0, I=0, tau_sort=False
+    f,
+    Z,
+    cir="R0-L0-p(R1,CPE1)",
+    init=None,
+    bounds=None,
+    outliers=False,
+    threshold=1,
+    E=0,
+    I=0,
+    tau_sort=False,
 ):
     """
     Fit an impedance spectrum to a specified circuit model using CustomCircuit.

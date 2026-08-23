@@ -18,6 +18,7 @@ from .processing import (
     split_dataframe_by_contiguous_runs,
     split_dataframe_by_jumps,
 )
+from .plots import apply_plot_style, style_legend
 
 if TYPE_CHECKING:
     from matplotlib.axes import Axes
@@ -57,7 +58,7 @@ def _is_plot_filter_all(val: Any) -> bool:
 def _style_legend(ax: Any, *, frameon: bool = False) -> None:
     leg = ax.get_legend()
     if leg is not None:
-        leg.set_frame_on(frameon)
+        style_legend(leg, frameon=frameon)
 
 
 def _validate_xy_columns(df: pd.DataFrame, x: str, y: str, y2: str | None = None) -> None:
@@ -498,6 +499,7 @@ def plot_measurement(
         fig, ax = plt.subplots(figsize=figsize)
     else:
         fig = ax.figure
+    apply_plot_style(ax)
 
     if label is None:
         label = _default_plot_label(m)
@@ -530,6 +532,7 @@ def plot_measurement(
             _style_legend(ax, frameon=legend_frameon)
         if y2 is not None:
             ax2 = ax.twinx()
+            apply_plot_style(ax2)
             lab2_base = str(y2) if label2 is None else label2
             y2_kw: dict[str, Any] = {
                 "linestyle": linestyle,
@@ -566,6 +569,7 @@ def plot_measurement(
 
         if y2 is not None:
             ax2 = ax.twinx()
+            apply_plot_style(ax2)
             if label2 is None:
                 label2 = str(y2)
             plot2_kw: dict[str, Any] = {

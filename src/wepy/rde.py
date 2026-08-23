@@ -41,6 +41,7 @@ from .plotting import (
     _str_or_sequence,
     _style_legend,
 )
+from .plots import apply_plot_style
 
 ProcedureLSVorCV = Literal["LSV", "CV"]
 
@@ -864,6 +865,7 @@ def plot_tafel_analysis(
         fig, ax = plt.subplots(figsize=figsize)
     else:
         fig = ax.figure
+    apply_plot_style(ax)
 
     n_seg = len(segments)
     for idx, seg in enumerate(segments):

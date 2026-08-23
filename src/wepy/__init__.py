@@ -21,6 +21,7 @@ from .dataset import (
 )
 from .legacy import *
 from .mpt_reader import read_mpt_dataframe
+from .plots import apply_plot_style, configure_plot_style
 from .processing import (
     add_current_density,
     split_dataframe_by_column,
@@ -53,11 +54,13 @@ __all__ = [
     "Measurement",
     "SampleDataset",
     "add_current_density",
+    "apply_plot_style",
     "canonicalize_biologic_column",
     "canonicalize_technique_text",
     "dataframe_biologic_columns",
     "detect_technique",
     "detect_technique_from_filename",
+    "configure_plot_style",
     "ensure_output_dir",
     "load_samples",
     "normalize_sample_entry",
