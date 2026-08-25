@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import warnings
 from glob import glob
 from galvani import MPRfile
 
@@ -257,6 +258,65 @@ def read_file(file, skiprows=None, delimiter="\t", encoding="latin1", **kwargs):
     return df
 
 
+def read_file_safe(
+    file,
+    skiprows=None,
+    delimiter="\t",
+    encoding="latin1",
+    *,
+    on_error="skip",
+    warn=True,
+    **kwargs,
+):
+    """Read a measurement file and return ``None`` when it contains no data.
+
+    Empty Bio-Logic exports can be zero-byte files, header-only files, or
+    files that the reader cannot decode.  This helper is intended for batch
+    processing: it skips those files by default while preserving the normal
+    :func:`read_file` behavior for valid files.
+
+    Parameters are the same as :func:`read_file`.
+
+    Parameters
+    ----------
+    on_error : {"skip", "raise"}
+        Skip unreadable files and return ``None`` (default), or re-raise the
+        original exception.
+    warn : bool
+        Emit a warning when a file is skipped.
+    """
+    if on_error not in {"skip", "raise"}:
+        raise ValueError("on_error must be 'skip' or 'raise'")
+
+    path = os.fspath(file)
+    reason = None
+    try:
+        if not os.path.isfile(path):
+            reason = "file does not exist"
+        elif os.path.getsize(path) == 0:
+            reason = "file is empty"
+        else:
+            df = read_file(
+                path,
+                skiprows=skiprows,
+                delimiter=delimiter,
+                encoding=encoding,
+                **kwargs,
+            )
+            if df is None or df.empty or df.dropna(how="all").empty:
+                reason = "no data rows were saved"
+            else:
+                return df
+    except Exception:
+        if on_error == "raise":
+            raise
+        reason = "file could not be read"
+
+    if warn:
+        warnings.warn(f"Skipping {path!r}: {reason}.", UserWarning, stacklevel=2)
+    return None
+
+
 def get_sample_number(path):
     """
     Extracts the sample number from the last folder in the given path containing the sample number at its beginning.
@@ -298,6 +358,59 @@ def get_sample_number(path):
 
         i -= 1
     return number
+
+
+def get_sample_name(sample_number, sample_log="sample_log.csv"):
+    """Return the sample name recorded for *sample_number*.
+
+    The log must contain a ``Sample Name`` column.  The sample-number column
+    may be named ``Sample Number``, ``Sample ID``, ``Sample`` or ``ID``; if
+    none of those is present, all other columns are searched for an exact
+    sample-number match.
+    """
+    log = pd.read_csv(sample_log)
+    if "Sample Name" not in log.columns:
+        raise KeyError(
+            f"{sample_log!r} must contain a 'Sample Name' column; "
+            f"found {list(log.columns)!r}"
+        )
+
+    target = str(sample_number).strip()
+    normalized_columns = {
+        column: "".join(ch for ch in str(column).lower() if ch.isalnum())
+        for column in log.columns
+    }
+    preferred = [
+        column
+        for column, normalized in normalized_columns.items()
+        if column != "Sample Name"
+        and normalized in {"samplenumber", "sampleid", "sample", "id", "number"}
+    ]
+    search_columns = preferred or [
+        column for column in log.columns if column != "Sample Name"
+    ]
+
+    for column in search_columns:
+        values = log[column].astype("string").str.strip()
+        matches = values == target
+        if not matches.any():
+            try:
+                matches = pd.to_numeric(log[column], errors="coerce") == float(
+                    sample_number
+                )
+            except (TypeError, ValueError):
+                pass
+        if matches.any():
+            name = log.loc[matches, "Sample Name"].iloc[0]
+            if pd.isna(name) or not str(name).strip():
+                raise ValueError(
+                    f"Sample {sample_number!r} has an empty 'Sample Name' in {sample_log!r}"
+                )
+            return str(name).strip()
+
+    raise KeyError(
+        f"Sample {sample_number!r} was not found in {sample_log!r}"
+    )
 
 
 def get_day(file):
