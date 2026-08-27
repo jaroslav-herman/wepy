@@ -1,13 +1,25 @@
 [project]
-name = "wepy"
+name = "eisyfit-wepy"
 version = "0.1.0"
-description = "Add your description here"
+description = "EIS-specific electrochemical data-processing utilities"
 readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Jaroslav Herman" },
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Chemistry",
+]
 requires-python = ">=3.14"
 dependencies = [
-    "bayes-drt2",
-    "galvani",
-    "hybrid-drt",
+    "eisyfit-bayes-drt2",
+    "eisyfit-galvani",
+    "eisyfit-hybrid-drt",
     "impedance>=1.7.1",
     "matplotlib>=3.11.1",
     "mittag-leffler",
@@ -16,8 +28,13 @@ dependencies = [
     "pandas>=3.0.3",
 ]
 
-[tool.uv.sources]
-mittag-leffler = { git = "https://github.com/jdhuang-csm/mittag-leffler" }
-hybrid-drt = { git = "https://github.com/jdhuang-csm/hybrid-drt" }
-bayes-drt2 = { git = "https://github.com/jaroslav-herman/bayes-drt2" }
-galvani = { git = "https://github.com/jaroslav-herman/galvani" }
+[project.urls]
+Homepage = "https://github.com/jaroslav-herman/wepy"
+Repository = "https://github.com/jaroslav-herman/wepy"
+Issues = "https://github.com/jaroslav-herman/wepy/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+wepy = ["py.typed"]
