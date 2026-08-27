@@ -1,6 +1,6 @@
 [project]
 name = "eisyfit-wepy"
-version = "0.1.0"
+version = "0.1.1"
 description = "EIS-specific electrochemical data-processing utilities"
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -22,7 +22,6 @@ dependencies = [
     "eisyfit-hybrid-drt",
     "impedance>=1.7.1",
     "matplotlib>=3.11.1",
-    "mittag-leffler",
     "natsort>=8.4.0",
     "numpy>=2.5.1",
     "pandas>=3.0.3",
