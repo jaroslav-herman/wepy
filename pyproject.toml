@@ -1,6 +1,6 @@
 [project]
 name = "eisyfit-wepy"
-version = "0.1.1"
+version = "0.1.2"
 description = "EIS-specific electrochemical data-processing utilities"
 readme = "README.md"
 license = { file = "LICENSE" }

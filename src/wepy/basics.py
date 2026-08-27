@@ -221,6 +221,33 @@ def get_colors(n=10, colormap="rainbow"):
     return colors
 
 
+def _loop_labels(n_rows, loop_index):
+    """Convert Galvani loop-start indices to zero-based row labels."""
+    if n_rows == 0:
+        return np.array([], dtype=int)
+    if loop_index is None:
+        return np.zeros(n_rows, dtype=int)
+
+    starts = np.asarray(loop_index, dtype=int).reshape(-1)
+    starts = starts[(starts >= 0) & (starts < n_rows)]
+    starts = np.unique(np.concatenate(([0], starts)))
+    labels = np.searchsorted(starts, np.arange(n_rows), side="right") - 1
+    return labels.astype(int, copy=False)
+
+
+def read_mpr(file, error_on_unknown_column=True):
+    """Read a Bio-Logic ``.mpr`` file and add its zero-based ``loop`` column.
+
+    Galvani stores loop starts as row indices in ``MPRfile.loop_index``.  The
+    indices are converted into one integer loop label per data row.  Files
+    without loop metadata receive ``loop == 0`` for every row.
+    """
+    mpr = MPRfile(os.fspath(file), error_on_unknown_column=error_on_unknown_column)
+    data = pd.DataFrame(mpr.data)
+    data["loop"] = _loop_labels(len(data), mpr.loop_index)
+    return data
+
+
 def read_file(file, skiprows=None, delimiter="\t", encoding="latin1", **kwargs):
     """
     Reads a data file into a pandas DataFrame.
@@ -245,17 +272,28 @@ def read_file(file, skiprows=None, delimiter="\t", encoding="latin1", **kwargs):
         Data read from the file.
     """
     if os.fspath(file).lower().endswith(".mpr"):
-        # MPR files are binary Bio-Logic files and cannot be parsed with
-        # pandas.read_csv.  Galvani returns a NumPy record array, which is
-        # converted here so read_file has the same DataFrame return type for
-        # both MPR and text-based MPT files.
-        return pd.DataFrame(MPRfile(file).data)
+        # MPR files are binary Bio-Logic files and are read with the
+        # MPR-specific reader so loop metadata is retained.
+        return read_mpr(
+            file,
+            error_on_unknown_column=kwargs.pop("error_on_unknown_column", True),
+        )
 
     if skiprows is None:
         skiprows = get_header_lines(file) - 1
     with open(file, encoding=encoding) as f:
         df = pd.read_csv(f, skiprows=skiprows, delimiter=delimiter, **kwargs)
     return df
+
+
+def read_mpt_dataframe(file, **kwargs):
+    """Read a Bio-Logic text export for the EIS Fitting compatibility API.
+
+    Returns the dataframe together with header metadata and the technique
+    label expected by the application-level import service.
+    """
+    dataframe = read_file(file, **kwargs)
+    return dataframe, {}, "PEIS"
 
 
 def read_file_safe(
