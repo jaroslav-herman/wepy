@@ -17,10 +17,10 @@ For a reproducible `uv` project, pin the same release in `pyproject.toml`:
 
 ```toml
 [project]
-dependencies = ["wepy"]
+dependencies = ["eisyfit-wepy"]
 
 [tool.uv.sources]
-wepy = { git = "https://github.com/jaroslav-herman/wepy.git", tag = "v0.1.3" }
+eisyfit-wepy = { git = "https://github.com/jaroslav-herman/wepy.git", tag = "v0.1.3" }
 ```
 
 ## License
