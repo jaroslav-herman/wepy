@@ -4,7 +4,7 @@ The package currently exposes the established ``basics`` and ``iv_curve``
 APIs. Older analysis scripts commonly import these modules explicitly.
 """
 
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 
 from . import basics, iv_curve, plots
 from .basics import *

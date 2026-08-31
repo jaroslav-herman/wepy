@@ -33,19 +33,6 @@ wheels = [
 ]
 
 [[package]]
-name = "bayes-drt2"
-version = "0.2"
-source = { git = "https://github.com/jaroslav-herman/bayes-drt2#836f66fa4b791fa353ac6ea4540ce5e752f05774" }
-dependencies = [
-    { name = "cmdstanpy" },
-    { name = "cvxopt" },
-    { name = "matplotlib" },
-    { name = "numpy" },
-    { name = "pandas" },
-    { name = "scipy" },
-]
-
-[[package]]
 name = "cmdstanpy"
 version = "1.3.0"
 source = { registry = "https://pypi.org/simple" }
@@ -132,6 +119,94 @@ wheels = [
 ]
 
 [[package]]
+name = "eisyfit-bayes-drt2"
+version = "0.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "cmdstanpy" },
+    { name = "cvxopt" },
+    { name = "matplotlib" },
+    { name = "numpy" },
+    { name = "pandas" },
+    { name = "scipy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/31/51/2e824989440ab2d82de0483ee0727dd88a4006d463758f3845be44fd71a4/eisyfit_bayes_drt2-0.2.tar.gz", hash = "sha256:7bde02c79abc93ee525bdd4b812b19e960596670abb082c03a5647f1699a3d74", size = 87932, upload-time = "2026-08-27T09:27:28.224Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/4c/ce/9d29b329bb83db9a6422be06758f58f69656c4506d41ae78db02b9bff6b0/eisyfit_bayes_drt2-0.2-py3-none-any.whl", hash = "sha256:667c873c19554b3cf23106f59a8dc316af9d14d34470f5d121e94c45990d2c76", size = 103313, upload-time = "2026-08-27T09:27:27.2Z" },
+]
+
+[[package]]
+name = "eisyfit-galvani"
+version = "0.5.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ab/fa/2e53e755d1dd85c308ec66b56620fd6b6e3afcab3b03d379d4ecd67b2a43/eisyfit_galvani-0.5.0.tar.gz", hash = "sha256:f4a2a5c05fd9f328eb68cf707520133d412414955d93f3909f0c1fe380247723", size = 41360, upload-time = "2026-08-27T10:18:57.926Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f0/12/d7b9b2ca5a0b2fa3a6d8b4ad46d046d18310256a2ead24c7d2127157d150/eisyfit_galvani-0.5.0-py3-none-any.whl", hash = "sha256:519e539e440245d4df0a47347caf10a4e63ca31a883a8b045fd0534ad56c887e", size = 30520, upload-time = "2026-08-27T10:18:57.016Z" },
+]
+
+[[package]]
+name = "eisyfit-hybrid-drt"
+version = "0.1.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "cvxopt" },
+    { name = "eisyfit-mittag-leffler" },
+    { name = "matplotlib" },
+    { name = "numpy" },
+    { name = "pandas" },
+    { name = "scikit-image" },
+    { name = "scikit-learn" },
+    { name = "scipy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/15/e0/a8bb1cbf5af8df368a5d733149cdd9d351e9709be2f02fccb3dabb895900/eisyfit_hybrid_drt-0.1.1.tar.gz", hash = "sha256:5eceecf6c9bcf2764aba66188515dce0924a9b1e8efa02cd25efd89ced70003c", size = 271760, upload-time = "2026-08-27T11:04:38.482Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ca/b2/b4e21b0356b98aa98901fc7a80ea5e34457878e4570e71e7387cfaf68701/eisyfit_hybrid_drt-0.1.1-py3-none-any.whl", hash = "sha256:9092f1eb2fc2167db20fe78167468c2ec65b79db6184030257952eacb2d031ac", size = 290436, upload-time = "2026-08-27T11:04:37.14Z" },
+]
+
+[[package]]
+name = "eisyfit-mittag-leffler"
+version = "0.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+    { name = "scipy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/5a/45/9c839a8a208c87a40b0edf111464ea88696006b6e1024467e7cc12dd2f09/eisyfit_mittag_leffler-0.1.tar.gz", hash = "sha256:2cac4930241841fecaf4e80a22682eaf472eedf679a30dc326453e26d5c0d188", size = 7094, upload-time = "2026-08-27T11:03:44.284Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a5/1a/b23b90ce78a06435cfbbb76725fef2617bfa435c8ce8a6f143f20f5fad2b/eisyfit_mittag_leffler-0.1-py3-none-any.whl", hash = "sha256:8f39d229996757e1e4efdf14928f5c2f633eff1e64ba620fdfba8b82f8422f3d", size = 8137, upload-time = "2026-08-27T11:03:43.495Z" },
+]
+
+[[package]]
+name = "eisyfit-wepy"
+version = "0.1.3"
+source = { virtual = "." }
+dependencies = [
+    { name = "eisyfit-bayes-drt2" },
+    { name = "eisyfit-galvani" },
+    { name = "eisyfit-hybrid-drt" },
+    { name = "impedance" },
+    { name = "matplotlib" },
+    { name = "natsort" },
+    { name = "numpy" },
+    { name = "pandas" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "eisyfit-bayes-drt2" },
+    { name = "eisyfit-galvani" },
+    { name = "eisyfit-hybrid-drt" },
+    { name = "impedance", specifier = ">=1.7.1" },
+    { name = "matplotlib", specifier = ">=3.11.1" },
+    { name = "natsort", specifier = ">=8.4.0" },
+    { name = "numpy", specifier = ">=2.5.1" },
+    { name = "pandas", specifier = ">=3.0.3" },
+]
+
+[[package]]
 name = "fonttools"
 version = "4.63.0"
 source = { registry = "https://pypi.org/simple" }
@@ -154,28 +229,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/34/3b/214dcc19ee31d3d38fb5ad2755c11ef0514e5dc300bbaf41c0b69f393799/fonttools-4.63.0-cp314-cp314t-win32.whl", hash = "sha256:948428a275741f0b64b113c955425a953314f4b9ab9997f73a72c83e68e569c8", size = 2359326, upload-time = "2026-05-14T12:04:24.22Z" },
     { url = "https://files.pythonhosted.org/packages/dd/1e/3ff1a9b523058c2eeb6a9d50f5574e2a738200d0d94107d5bc4105e8da3f/fonttools-4.63.0-cp314-cp314t-win_amd64.whl", hash = "sha256:6d4741eb179121cab9eea4cb2393d24492373a260d7945006358c08cfbf45419", size = 2425829, upload-time = "2026-05-14T12:04:26.829Z" },
     { url = "https://files.pythonhosted.org/packages/2c/47/c99d5268f354002ce80f8d029cd9d7d872969da1de8b93d32de4dc56d6f4/fonttools-4.63.0-py3-none-any.whl", hash = "sha256:445af2eab030a16b9171ea8bdda7ebf7d96bda2df88ee182a464252f6e05e20d", size = 1164562, upload-time = "2026-05-14T12:04:29.092Z" },
-]
-
-[[package]]
-name = "galvani"
-version = "0.5.0"
-source = { git = "https://github.com/jaroslav-herman/galvani#bd6d3d6b688afda9a73a59c07089ad57e5042101" }
-dependencies = [
-    { name = "numpy" },
-]
-
-[[package]]
-name = "hybrid-drt"
-version = "0.1"
-source = { git = "https://github.com/jdhuang-csm/hybrid-drt#e01dba1bf5f02fa6b63c82169c0652a5a695344d" }
-dependencies = [
-    { name = "cvxopt" },
-    { name = "matplotlib" },
-    { name = "numpy" },
-    { name = "pandas" },
-    { name = "scikit-image" },
-    { name = "scikit-learn" },
-    { name = "scipy" },
 ]
 
 [[package]]
@@ -365,15 +418,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/0f/68/3c22e9320bdce2c4d2f1320643ef706db7a24cb7420eea28b97a2d67f5a8/matplotlib-3.11.1-cp314-cp314t-musllinux_1_2_x86_64.whl", hash = "sha256:b937b9dba5f5f6c1e31c47abe2186c865c0914fd18f2ce0dfc39c9adcef5951d", size = 10943061, upload-time = "2026-07-18T03:39:32.356Z" },
     { url = "https://files.pythonhosted.org/packages/f6/4a/907ed190ee81a9df581e0ed5456134fc0f7cb55ffcfda2f9e54ca900761c/matplotlib-3.11.1-cp314-cp314t-win_amd64.whl", hash = "sha256:f2912f647f3fbe1ccf085f91e213936f9101bead81a5e670565b1f1b3712f4fb", size = 9540074, upload-time = "2026-07-18T03:39:34.789Z" },
     { url = "https://files.pythonhosted.org/packages/23/d4/97c19b77e0a6e3b48581185bb65088f431cd20186076cc0f650a1757ea46/matplotlib-3.11.1-cp314-cp314t-win_arm64.whl", hash = "sha256:54d47b8ae8b579633a3902ca5b4ad6c1e132a5626d64447b2e22a66394e79987", size = 9213472, upload-time = "2026-07-18T03:39:37.141Z" },
-]
-
-[[package]]
-name = "mittag-leffler"
-version = "0.1"
-source = { git = "https://github.com/jdhuang-csm/mittag-leffler#6e875fa3e124d25420fd791e4e742d67599d94a7" }
-dependencies = [
-    { name = "numpy" },
-    { name = "scipy" },
 ]
 
 [[package]]
@@ -782,33 +826,4 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/92/ff/5a28bdfd8c3ebec42564ac7d0e54ca3db65044a9314a97f9564fa7a1e926/tzdata-2026.3.tar.gz", hash = "sha256:4a1518b8993086a7982523e071643f3c0e5f213e75b21318e78bcabfff9d1415", size = 198674, upload-time = "2026-07-10T08:50:37.887Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/e5/6d/b53b99a9f2766d095985947a5782f1702cabb129a34f7a802d7197af832f/tzdata-2026.3-py2.py3-none-any.whl", hash = "sha256:dc096730c87af6cab1b171c9d532be840741ff5d459015e7f6947bd7d7e54931", size = 348168, upload-time = "2026-07-10T08:50:36.46Z" },
-]
-
-[[package]]
-name = "wepy"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "bayes-drt2" },
-    { name = "galvani" },
-    { name = "hybrid-drt" },
-    { name = "impedance" },
-    { name = "matplotlib" },
-    { name = "mittag-leffler" },
-    { name = "natsort" },
-    { name = "numpy" },
-    { name = "pandas" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "bayes-drt2", git = "https://github.com/jaroslav-herman/bayes-drt2" },
-    { name = "galvani", git = "https://github.com/jaroslav-herman/galvani" },
-    { name = "hybrid-drt", git = "https://github.com/jdhuang-csm/hybrid-drt" },
-    { name = "impedance", specifier = ">=1.7.1" },
-    { name = "matplotlib", specifier = ">=3.11.1" },
-    { name = "mittag-leffler", git = "https://github.com/jdhuang-csm/mittag-leffler" },
-    { name = "natsort", specifier = ">=8.4.0" },
-    { name = "numpy", specifier = ">=2.5.1" },
-    { name = "pandas", specifier = ">=3.0.3" },
 ]

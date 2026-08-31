@@ -10,7 +10,17 @@ unrelated public `wepy` project. The installed Python import package remains
 ## Installation
 
 ```shell
-pip install eisyfit-wepy
+pip install "eisyfit-wepy @ git+https://github.com/jaroslav-herman/wepy.git@v0.1.3"
+```
+
+For a reproducible `uv` project, pin the same release in `pyproject.toml`:
+
+```toml
+[project]
+dependencies = ["wepy"]
+
+[tool.uv.sources]
+wepy = { git = "https://github.com/jaroslav-herman/wepy.git", tag = "v0.1.3" }
 ```
 
 ## License
