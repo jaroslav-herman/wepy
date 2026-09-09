@@ -137,14 +137,14 @@ wheels = [
 
 [[package]]
 name = "eisyfit-galvani"
-version = "0.5.0"
+version = "0.5.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "numpy" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ab/fa/2e53e755d1dd85c308ec66b56620fd6b6e3afcab3b03d379d4ecd67b2a43/eisyfit_galvani-0.5.0.tar.gz", hash = "sha256:f4a2a5c05fd9f328eb68cf707520133d412414955d93f3909f0c1fe380247723", size = 41360, upload-time = "2026-08-27T10:18:57.926Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/de/ab/b7debe11c10623248abc32fa98817f4612bc69b3197d321cbb5c1105c0af/eisyfit_galvani-0.5.1.tar.gz", hash = "sha256:f5ee585639bd12c310959517e8321d606ede930d602deb9242ff548467f3b084", size = 42071, upload-time = "2026-09-09T08:29:14.587Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f0/12/d7b9b2ca5a0b2fa3a6d8b4ad46d046d18310256a2ead24c7d2127157d150/eisyfit_galvani-0.5.0-py3-none-any.whl", hash = "sha256:519e539e440245d4df0a47347caf10a4e63ca31a883a8b045fd0534ad56c887e", size = 30520, upload-time = "2026-08-27T10:18:57.016Z" },
+    { url = "https://files.pythonhosted.org/packages/fe/71/847912995730678a5378b55fc1c4326b913ad976dace9a3e237fc05455de/eisyfit_galvani-0.5.1-py3-none-any.whl", hash = "sha256:93acaf3509fc1ed1e2d0834ec1f7e7f5db8e88469a8771f174360f86e4bf8acd", size = 30980, upload-time = "2026-09-09T08:29:13.545Z" },
 ]
 
 [[package]]
@@ -181,7 +181,7 @@ wheels = [
 
 [[package]]
 name = "eisyfit-wepy"
-version = "0.1.3"
+version = "0.1.4"
 source = { virtual = "." }
 dependencies = [
     { name = "eisyfit-bayes-drt2" },
@@ -197,7 +197,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "eisyfit-bayes-drt2" },
-    { name = "eisyfit-galvani" },
+    { name = "eisyfit-galvani", specifier = ">=0.5.1" },
     { name = "eisyfit-hybrid-drt" },
     { name = "impedance", specifier = ">=1.7.1" },
     { name = "matplotlib", specifier = ">=3.11.1" },
