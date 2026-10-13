@@ -5,7 +5,7 @@ import os
 from glob import glob
 # from hybdrt.models import DRT
 from scipy.interpolate import interp1d
-import .basics as web
+import wepy.basics as web
 # import wepy as we
 from impedance.models.circuits import CustomCircuit
 
